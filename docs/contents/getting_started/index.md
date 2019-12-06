@@ -60,9 +60,10 @@ $ cd pdf.js
 ## Including via a CDN
 
 PDF.js is hosted on several free CDNs:
- - https://www.jsdelivr.com/package/npm/pdfjs-dist
- - https://cdnjs.com/libraries/pdf.js
- - https://unpkg.com/pdfjs-dist/
+
+- https://www.jsdelivr.com/package/npm/pdfjs-dist
+- https://cdnjs.com/libraries/pdf.js
+- https://unpkg.com/pdfjs-dist/
 
 ## File Layout Overview
 
@@ -78,7 +79,7 @@ Note that we only mention the most relevant files and folders.
 │   └── pdf.worker.js.map                  - core layer's source map
 ├── web/
 │   ├── cmaps/                             - character maps (required by core)
-│   ├── compressed.tracemonkey-pldi-09.pdf - PDF file for testing purposes
+│   ├── Novasign Toolbox Document.pdf - PDF file for testing purposes
 │   ├── debugger.js                        - helpful debugging features
 │   ├── images/                            - images for the viewer and annotation icons
 │   ├── locale/                            - translation files

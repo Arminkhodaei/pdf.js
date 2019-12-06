@@ -51,7 +51,7 @@ NodeCanvasFactory.prototype = {
 var pdfjsLib = require('pdfjs-dist');
 
 // Relative path of the PDF file.
-var pdfURL = '../../../web/compressed.tracemonkey-pldi-09.pdf';
+var pdfURL = '../../../web/Novasign Toolbox Document.pdf';
 
 // Read the PDF file into a typed array so PDF.js can load it.
 var rawData = new Uint8Array(fs.readFileSync(pdfURL));

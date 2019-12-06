@@ -17,7 +17,7 @@ require('./domstubs.js').setStubs(global);
 var pdfjsLib = require('pdfjs-dist');
 
 // Loading file from file system into typed array
-var pdfPath = process.argv[2] || '../../web/compressed.tracemonkey-pldi-09.pdf';
+var pdfPath = process.argv[2] || '../../web/Novasign Toolbox Document.pdf';
 var data = new Uint8Array(fs.readFileSync(pdfPath));
 
 var outputDirectory = './svgdump';
