@@ -837,29 +837,31 @@ gulp.task(
       ).pipe(gulp.dest(MINIFIED_DIR + 'image_decoders')),
       gulp
         .src(COMMON_WEB_FILES, { base: 'web/', })
-        .pipe(gulp.dest(MINIFIED_DIR + 'web')),
+        .pipe(gulp.dest(MINIFIED_DIR)),
       gulp
         .src(
           ['web/locale/*/viewer.properties', 'web/locale/locale.properties'],
           { base: 'web/', }
         )
-        .pipe(gulp.dest(MINIFIED_DIR + 'web')),
+        .pipe(gulp.dest(MINIFIED_DIR)),
       gulp
         .src(['external/bcmaps/*.bcmap', 'external/bcmaps/LICENSE'], {
           base: 'external/bcmaps',
         })
-        .pipe(gulp.dest(MINIFIED_DIR + 'web/cmaps')),
+        .pipe(gulp.dest(MINIFIED_DIR + 'cmaps')),
 
-      preprocessHTML('web/viewer.html', defines).pipe(
-        gulp.dest(MINIFIED_DIR + 'web')
+      preprocessHTML('web/viewer.html', defines)
+      .pipe(rename('index.html'))
+      .pipe(
+        gulp.dest(MINIFIED_DIR)
       ),
       preprocessCSS('web/viewer.css', 'minified', defines, true)
         .pipe(postcss([autoprefixer(AUTOPREFIXER_CONFIG)]))
-        .pipe(gulp.dest(MINIFIED_DIR + 'web')),
+        .pipe(gulp.dest(MINIFIED_DIR)),
 
       gulp
         .src('web/Novasign Toolbox Document.pdf')
-        .pipe(gulp.dest(MINIFIED_DIR + 'web')),
+        .pipe(gulp.dest(MINIFIED_DIR)),
     ]);
   })
 );
@@ -887,7 +889,7 @@ gulp.task(
     var optsForHugeFile = { compress: { sequences: false, }, };
 
     fs.writeFileSync(
-      MINIFIED_DIR + '/web/pdf.viewer.js',
+      MINIFIED_DIR + '/pdf.viewer.js',
       Terser.minify(viewerFiles).code
     );
     fs.writeFileSync(
@@ -907,7 +909,9 @@ gulp.task(
     console.log('### Cleaning js files');
 
     fs.unlinkSync(MINIFIED_DIR + '/web/viewer.js');
-    fs.unlinkSync(MINIFIED_DIR + '/web/debugger.js');
+    fs.unlinkSync(MINIFIED_DIR + '/debugger.js');
+    rimraf.sync(MINIFIED_DIR + '/web');
+
     fs.unlinkSync(MINIFIED_DIR + '/build/pdf.js');
     fs.unlinkSync(MINIFIED_DIR + '/build/pdf.worker.js');
     fs.renameSync(
